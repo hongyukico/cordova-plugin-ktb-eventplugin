@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='utf-8'?>
+<plugin id="cordova-plugin-ktb-eventplugin" version="1.0.0" xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android">
+    <name>eventPlugin</name>
+    <js-module name="eventPlugin" src="www/eventPlugin.js">
+        <clobbers target="eventPlugin" />
+    </js-module>
+	<platform name="android">
+	    <config-file target="res/xml/config.xml" parent="/*">
+			<feature name="EventPlugin">
+			   <param name="android-package" value="com.ktb.plugin.EventListenerPlugin" />
+			</feature>
+		</config-file>
+		<source-file src="src/android/EventListenerPlugin.java" target-dir="src/com/ktb/plugin" />
+		<source-file src="src/android/WebEvent.java" target-dir="src/com/ktb/plugin" />
+		<source-file src="src/android/EventReceiver.java" target-dir="src/com/ktb/plugin" />
+		<!-- Gradle config -->
+		<framework custom="true" src="src/android/event.gradle" type="gradleReference"/>
+	</platform>
+
+	
+	<platform name="ios">
+        <config-file target="config.xml" parent="/*">
+            <feature name="EventPlugin">     
+                <param name="ios-package" value="CDVObserver" />
+            </feature>
+            </config-file>
+        <source-file src="src/ios/CDVObserver.h" />
+        <source-file src="src/ios/CDVObserver.m" />
+    </platform>
+
+</plugin>
